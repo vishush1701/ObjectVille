@@ -27,7 +27,8 @@ public class Inventory {
         return guitar;
     }
 
-    public Guitar search(Guitar searchGuitar) {
+    public List<Guitar> search(Guitar searchGuitar) {
+        List<Guitar> matchingGuitars = new LinkedList<>();
         Iterator<Guitar> iterator = this.guitars.iterator();
         while (iterator.hasNext()){
             Guitar guitar = iterator.next();
@@ -43,7 +44,8 @@ public class Inventory {
                 continue;
             if (!guitar.getType().equalsIgnoreCase(searchGuitar.getType()))
                 continue;
+            matchingGuitars.add(guitar);
         }
-        return  null;
+        return  matchingGuitars;
     }
 }

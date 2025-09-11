@@ -3,6 +3,7 @@ package org.objectville;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Inventory {
     private List<Guitar> guitars;
@@ -12,7 +13,7 @@ public class Inventory {
     }
     public void addGuitart(String serialNumber, String builder, String model, String type, String backWood, String topWood, Double price){
         Guitar guitar = new Guitar(serialNumber, builder, model, type, backWood, topWood, price);
-        guitars.add(guitar);
+        this.guitars.add(guitar);
     }
 
     public Guitar getGuitar(String serialNumber){
@@ -32,17 +33,17 @@ public class Inventory {
         Iterator<Guitar> iterator = this.guitars.iterator();
         while (iterator.hasNext()){
             Guitar guitar = iterator.next();
-            if(!guitar.getSerialNumber().equalsIgnoreCase(searchGuitar.getSerialNumber()))
+            if(Objects.nonNull(searchGuitar.getSerialNumber()) && !guitar.getSerialNumber().equalsIgnoreCase(searchGuitar.getSerialNumber()))
                 continue;
-            if(!guitar.getBuilder().equalsIgnoreCase(searchGuitar.getBuilder()))
+            if(Objects.nonNull(searchGuitar.getBuilder()) && !guitar.getBuilder().equalsIgnoreCase(searchGuitar.getBuilder()))
                 continue;
-            if(!guitar.getBackWood().equalsIgnoreCase(searchGuitar.getBackWood()))
+            if(Objects.nonNull(searchGuitar.getBackWood()) && !guitar.getBackWood().equalsIgnoreCase(searchGuitar.getBackWood()))
                 continue;
-            if(!guitar.getModel().equalsIgnoreCase(searchGuitar.getModel()))
+            if(Objects.nonNull(searchGuitar.getModel()) && !guitar.getModel().equalsIgnoreCase(searchGuitar.getModel()))
                 continue;
-            if(!guitar.getTopWood().equalsIgnoreCase(searchGuitar.getTopWood()))
+            if(Objects.nonNull(searchGuitar.getTopWood()) && !guitar.getTopWood().equalsIgnoreCase(searchGuitar.getTopWood()))
                 continue;
-            if (!guitar.getType().equalsIgnoreCase(searchGuitar.getType()))
+            if (Objects.nonNull(searchGuitar.getType()) && !guitar.getType().equalsIgnoreCase(searchGuitar.getType()))
                 continue;
             matchingGuitars.add(guitar);
         }

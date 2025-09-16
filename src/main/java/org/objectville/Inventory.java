@@ -11,7 +11,7 @@ public class Inventory {
     public Inventory (){
         this.guitars = new LinkedList<>();
     }
-    public void addGuitart(String serialNumber, String builder, String model, String type, String backWood, String topWood, Double price){
+    public void addGuitart(String serialNumber, Builder builder, String model, Type type, Wood backWood, Wood topWood, Double price){
         Guitar guitar = new Guitar(serialNumber, builder, model, type, backWood, topWood, price);
         this.guitars.add(guitar);
     }
@@ -35,15 +35,15 @@ public class Inventory {
             Guitar guitar = iterator.next();
             if(Objects.nonNull(searchGuitar.getSerialNumber()) && !guitar.getSerialNumber().equalsIgnoreCase(searchGuitar.getSerialNumber()))
                 continue;
-            if(Objects.nonNull(searchGuitar.getBuilder()) && !guitar.getBuilder().equalsIgnoreCase(searchGuitar.getBuilder()))
+            if(Objects.nonNull(searchGuitar.getBuilder()) && guitar.getBuilder() != searchGuitar.getBuilder())
                 continue;
-            if(Objects.nonNull(searchGuitar.getBackWood()) && !guitar.getBackWood().equalsIgnoreCase(searchGuitar.getBackWood()))
+            if(Objects.nonNull(searchGuitar.getBackWood()) && guitar.getBackWood() != searchGuitar.getBackWood())
                 continue;
-            if(Objects.nonNull(searchGuitar.getModel()) && !guitar.getModel().equalsIgnoreCase(searchGuitar.getModel()))
+            if(Objects.nonNull(searchGuitar.getModel()) && guitar.getModel() != searchGuitar.getModel())
                 continue;
-            if(Objects.nonNull(searchGuitar.getTopWood()) && !guitar.getTopWood().equalsIgnoreCase(searchGuitar.getTopWood()))
+            if(Objects.nonNull(searchGuitar.getTopWood()) && guitar.getTopWood() != searchGuitar.getTopWood())
                 continue;
-            if (Objects.nonNull(searchGuitar.getType()) && !guitar.getType().equalsIgnoreCase(searchGuitar.getType()))
+            if(Objects.nonNull(searchGuitar.getType()) && guitar.getType() != searchGuitar.getType())
                 continue;
             matchingGuitars.add(guitar);
         }

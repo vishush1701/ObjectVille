@@ -7,12 +7,13 @@ import java.util.Objects;
 
 public class Inventory {
     private List<Guitar> guitars;
+    private GuitarSpec guitarSpec;
 
     public Inventory (){
         this.guitars = new LinkedList<>();
     }
-    public void addGuitart(String serialNumber, Builder builder, String model, Type type, Wood backWood, Wood topWood, Double price){
-        Guitar guitar = new Guitar(serialNumber, builder, model, type, backWood, topWood, price);
+    public void addGuitart(String serialNumber,Double price,GuitarSpec guitarSpec){
+        Guitar guitar = new Guitar(serialNumber,price, guitarSpec);
         this.guitars.add(guitar);
     }
 
@@ -28,25 +29,7 @@ public class Inventory {
         return guitar;
     }
 
-    public List<Guitar> search(Guitar searchGuitar) {
-        List<Guitar> matchingGuitars = new LinkedList<>();
-        Iterator<Guitar> iterator = this.guitars.iterator();
-        while (iterator.hasNext()){
-            Guitar guitar = iterator.next();
-            if(Objects.nonNull(searchGuitar.getSerialNumber()) && !guitar.getSerialNumber().equalsIgnoreCase(searchGuitar.getSerialNumber()))
-                continue;
-            if(Objects.nonNull(searchGuitar.getBuilder()) && guitar.getBuilder() != searchGuitar.getBuilder())
-                continue;
-            if(Objects.nonNull(searchGuitar.getBackWood()) && guitar.getBackWood() != searchGuitar.getBackWood())
-                continue;
-            if(Objects.nonNull(searchGuitar.getModel()) && guitar.getModel() != searchGuitar.getModel())
-                continue;
-            if(Objects.nonNull(searchGuitar.getTopWood()) && guitar.getTopWood() != searchGuitar.getTopWood())
-                continue;
-            if(Objects.nonNull(searchGuitar.getType()) && guitar.getType() != searchGuitar.getType())
-                continue;
-            matchingGuitars.add(guitar);
-        }
-        return  matchingGuitars;
+    public List<Guitar> search(GuitarSpec guitarSpec) {
+            return guitarSpec.search(guitars);
     }
 }

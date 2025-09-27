@@ -1,31 +1,10 @@
 package org.objectville;
 
-public class Guitar {
-    private String serialNumber;
-    private Double price;
-
+public class Guitar extends Instrument {
     private GuitarSpec guitarSpec;
 
-    public Guitar(String serialNumber, Double price, GuitarSpec guitarSpec) {
-        this.serialNumber = serialNumber;
-        this.price = price;
+    public Guitar(GuitarSpec guitarSpec) {
         this.guitarSpec = guitarSpec;
-    }
-
-    public String getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public GuitarSpec getGuitarSpec() {
